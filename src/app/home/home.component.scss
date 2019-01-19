@@ -1,0 +1,14 @@
+.home {
+    color: white;
+    height: 100%;
+    border: 15px solid #dbaa62;
+    border-radius: 10px;
+    width: 100%; 
+}
+.que {
+    height: calc(100% - 52px);
+}
+.button-grp {
+    display: flex;
+    justify-content: center;
+}
