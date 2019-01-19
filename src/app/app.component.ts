@@ -18,6 +18,7 @@ export class AppComponent extends RootComponent implements OnInit  {
   }
 
   ngOnInit() {
+    // Fetching data from the API for questions
     this.store.dispatch({
       type: APP_ACTIONS.FETCH_DATA
     });
