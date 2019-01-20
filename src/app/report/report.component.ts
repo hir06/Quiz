@@ -16,6 +16,7 @@ export class ReportComponent extends NgrxStoreSubscription implements OnInit {
   ans: any;
   correct: number;
   incorrect: number;
+  total: number;
   data: any;
   constructor(private store: Store<any>) {
     super(store)
@@ -34,6 +35,7 @@ export class ReportComponent extends NgrxStoreSubscription implements OnInit {
       if (data.state == 'RESOLVED') {
         this.ans = data.data.ans;
         this.correct = data.data.correctAns;
+        this.total = data.data.totalAns;
         this.incorrect = (data.data.totalAns - data.data.correctAns);
         this.getPie(); 
         console.log(this.pie);
@@ -54,6 +56,8 @@ export class ReportComponent extends NgrxStoreSubscription implements OnInit {
 
   }
   getPie() {
+     //chart 
+     
     Highcharts.setOptions({colors: ['darkgreen','red']});
      this.pie = new Chart({
       chart: {
@@ -74,7 +78,7 @@ export class ReportComponent extends NgrxStoreSubscription implements OnInit {
           cursor: 'pointer',
           dataLabels: {
             enabled: true,
-            format: '<b>{point.name}</b>: {point.percentage}',
+            format: '<b>{point.name}</b>: {point.percentage} %',
             style: {
               color: 'black'
             }
@@ -85,12 +89,12 @@ export class ReportComponent extends NgrxStoreSubscription implements OnInit {
         name: 'Brands',
         data: [{
           name: 'Correct Answer',
-          y: this.correct,
+          y: this.correct/this.total*100,
           sliced: true,
           selected: true
         }, {
           name: 'Incorrect Answer',
-          y: this.incorrect
+          y: this.incorrect/this.total*100
         }]
       }]
     });
