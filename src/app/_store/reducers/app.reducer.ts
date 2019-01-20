@@ -1,8 +1,9 @@
 import { StoreUtil, DATA_STATE, NgrxObject} from 'ngrx-helpers';
-import {APP_ACTIONS} from '../app-actions';
+import { APP_ACTIONS } from '../app-actions';
 
 export interface AppState {
   readonly appData: NgrxObject<any>;
+  readonly ansData: NgrxObject<any>;
 }
 
 export const defaultAppState: AppState = {
@@ -10,6 +11,10 @@ export const defaultAppState: AppState = {
     data: {},
     state: DATA_STATE.INITIAL,
   },
+  ansData: {
+    data: {},
+    state: DATA_STATE.INITIAL
+  }
 };
 
 export function appDataReducer(state = defaultAppState, action) {
@@ -22,6 +27,12 @@ export function appDataReducer(state = defaultAppState, action) {
 
     case APP_ACTIONS.FETCH_DATA_ERROR:
       return StoreUtil.setError(state, 'appData', action.payload.data.status);
+
+    case APP_ACTIONS.FETCH_ANS_RESOLVING:
+      return StoreUtil.setResolving(state, 'ansData', {});
+
+    case APP_ACTIONS.FETCH_ANS_RESOLVED:
+      return StoreUtil.setResolved(state, 'ansData', action.data);
 
     default:
       return state;

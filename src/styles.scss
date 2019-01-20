@@ -5,8 +5,13 @@
 @import "~bootstrap/scss/mixins/breakpoints";
 
 body {
-    background-image: url('./assets/images/bg.png');
-    background-repeat: repeat;
+   background: rgb(6,116,46);
+   border: 14px solid;
+   border-image: url('http://www.ggeorgiou.gr/wp-content/uploads/2016/09/blackboard.png') 10; 
+   font-family: 'Roboto Slab', serif;
+   font-style: italic;
+   font-size: 20px;
+   color: white;
 }
 
 .full-height {

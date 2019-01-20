@@ -1,4 +1,41 @@
+<div *ngIf="data == undefined; else result" class="error p-4">
+    <div>
+        <h1> You have entered into wrong window please take the quiz first :) </h1>
+        <br />
+        <div class="start">
+            <button type="button" class="btn btn-secondary btn-lg mr-2" routerLink='../home'>Start Quiz</button>
+        </div>
 
-<!-- <div [chart]="chart">
+    </div>
+</div>
+<ng-template #result>
+    <div class="row parent">
+        <div class="col-md-6 graph">
+            <div>
+                <div [chart]="pie"></div>
+                <button type="button" class="btn btn-secondary btn-lg mt-2" routerLink='../home'>Start Quiz</button>
+            </div>
+        </div>
+        <div class="col-md-6 full-height bg">
+            <div class="scroll-container">
+                <div *ngFor="let que of data; let i = index">
+                    <div class="card border-secondary mb-3">
 
-</div> -->
+                        <div class="card-body text-secondary">
+                            <h5 class="card-title">{{que.text}} </h5>
+                            <ol class="c">
+                                <li #test *ngFor="let opt of que.options">{{opt}}</li>
+                            </ol>
+                            <div class="">
+                                Your Ans : {{ans[i]}}
+                            </div>
+                            <div class="correct">
+                                Correct Ans: {{que.answer}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

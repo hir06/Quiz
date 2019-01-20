@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { ReportComponent } from './report/report.component';
-// import { ChartModule } from 'angular-highcharts';
+import { ChartModule } from 'angular-highcharts';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import {NgrxHelperModule} from 'ngrx-helpers';
@@ -26,6 +26,7 @@ import {environment} from '../environments/environment.prod';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ChartModule,
     StoreModule.forRoot(rootReducers, { metaReducers }),
     StoreModule.forFeature(FEATURE.APP, appReducers),
     EffectsModule.forRoot(appEffects),
@@ -34,7 +35,7 @@ import {environment} from '../environments/environment.prod';
       name: 'NgRx Book Store DevTools',
       logOnly: environment.production,
     }),
-    // ChartModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

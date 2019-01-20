@@ -1,26 +1,30 @@
-<div class="home">
-  <div class="container full-height p-3">
-    <div class="row m-0 que">
-      <div class="col-md-12">
-        <p>
-          Your first question goes here heloo 123 jvhggjgyggjgjfscgcjweqfuiergkvbervuyrieuvrevrebvreb
-          brebrewb
-          brebtrw
-          brtwbtrw
-          btrw
-        </p>
-      </div>
-
-    </div>
-    <div class="row">
-
-      <div class="col-md-12  button-grp">
-        <button type="button" class="btn btn-secondary mr-2">A</button>
-        <button type="button" class="btn btn-secondary mr-2">B</button>
-        <button type="button" class="btn btn-secondary mr-2">C</button>
-        <button type="button" class="btn btn-secondary mr-2">D</button>
-      </div>
-    </div>
-
+<div [ngrxView]="dataState" class="full-height">
+  <div *ngrxViewResolving>
+    resolving
   </div>
-</div>
+  <div *ngrxViewResolved class="parent">
+    <div class="home" *ngIf='activeQue !== data.length ; else chart'>
+      <div>
+        <div *ngFor="let que of data; let i = index">
+          <div *ngIf="i === activeQue">
+            <div class="que mx-5 my-3">
+              <p>
+                {{que.text}}
+              </p>
+              <ol class="c">
+                <li #test *ngFor="let opt of que.options">{{opt}}</li>
+              </ol>
+            </div>
+            <div class="row col-md-12 button-grp py-4">
+              <div *ngFor="let op of que.options; let j=index">
+                <button type="button" class="btn btn-secondary btn-lg mr-2" (click)="saveAns(j)">{{opt[j]}}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ng-template #chart>
+        <button type="button" class="btn btn-secondary btn-lg mr-2 chart" routerLink='../report'>View Reports</button>
+    </ng-template>
+  </div>
